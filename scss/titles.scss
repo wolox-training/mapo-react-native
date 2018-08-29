@@ -1,16 +1,19 @@
 .title {
-  align-items: center;
-  color: #000;
-  display: flex;
-  font-size: 1rem;
-  padding: 10px;  
+  color: #000;  
+  font-size: 1.4rem;
+  height: 90px;
+  margin: 35px 70px;
+  position: relative;
+  padding: 35px 53px;  
 
   &::before {
     background: url('assets/triangle.svg') no-repeat right;
     content: '';
-    margin-right: -10px;
-    max-width: 50px;
-    min-height: 50px;
-    width: 100%;
+    height: 90px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 70px;
+    z-index: -1;
   }
 }
