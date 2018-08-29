@@ -61,5 +61,5 @@ typings/
 .next
 
 application.css
-.scss-cache
+.sass-cache
 application.css.map
