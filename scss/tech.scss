@@ -28,12 +28,12 @@
         width: 100%;
       }
 
-      .logo {
-        margin: 10px auto;
+      .logo {        
         height: 100px;
+        margin: 10px auto;
+        max-width: 100%;
         object-fit: contain;
         width: 100px;
-
       }
 
       .name {
