@@ -20,13 +20,14 @@
     width: 100%;
 
     &::before {
-      content: '';
       border: 1px solid $training-green;
       border-radius: 5px;
+      bottom: 10px;
+      content: '';
       height: 100%;
       right: 10px;
       position: absolute;
-      bottom: 10px;
+      transition: all 500ms;
       width: 100%;
     }
 
