@@ -1,5 +1,20 @@
 .train-header {
-	height: 90px;
-	position: fixed;
-	width: 100%;
+  background-color: $training-white;
+  box-shadow: 0 1px 15px $training-grey;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 30px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  .logo{
+    max-height: 100%;
+  }
+
+  .dev{
+    align-self: center;
+    font-size: $text-medium;
+  }
 }
