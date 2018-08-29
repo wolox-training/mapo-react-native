@@ -17,17 +17,17 @@
     padding: 20px 20px 10px 20px;
     position: relative;
     text-align: center;
-    transition: all 500ms ease;
     width: 100%;
 
     &::before {
       content: '';
       border: 1px solid $training-green;
       border-radius: 5px;
-      bottom: 10px;
       height: 100%;
       right: 10px;
       position: absolute;
+      bottom: 10px;
+      transition: all 500ms ease;
       width: 100%;
     }
 
