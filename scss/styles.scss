@@ -3,3 +3,14 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+
+.flex-body {
+  display: flex;
+  flex-direction: column;
+
+  .train-main {
+    margin: 90px auto;
+    max-width: 1500px;
+    width: 100%;
+  }
+}
