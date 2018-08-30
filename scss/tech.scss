@@ -1,0 +1,50 @@
+.techs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  .tech {
+    align-items: center;
+    background-color: $training-green;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 280px;
+    min-height: 320px;
+    padding: 20px 20px 10px 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    &::before {
+      content: '';
+      border: 1px solid $training-green;
+      border-radius: 5px;
+      height: 100%;
+      right: 10px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
+
+    .logo {        
+      height: 100px;
+      margin-bottom: 10px;
+      max-width: 100%;
+      object-fit: contain;
+      width: 100px;
+    }
+
+    .name {
+      margin-bottom: 10px;
+      font-size: $text-medium;
+    }
+
+    .rel {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+}
