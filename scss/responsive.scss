@@ -8,17 +8,18 @@
     .train-main {
       
       .section .techs {
-        display: grid;
-        gap: 0;
-        grid-auto-flow: column;
+        grid-auto-flow: row;
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        place-items: center;
-        position: relative;
 
         .tech {
           background-color: transparent;
           border-radius: 0;
+
+          &:first-child {
+            grid-column: auto;
+            grid-row: auto;
+            position: static;
+          }
 
           &:not(:last-child) {
             border-bottom: 2px solid $training-green;
@@ -28,6 +29,27 @@
             display: none;
           }
         }
+      }
+    }
+
+    .train-footer {
+      grid-template-areas: 
+        "txt"
+        "logo"
+        "copyright";
+      grid-template-columns: 1fr;
+
+      .txt {
+        font-size: $text-medium;
+      }
+
+      .logo {
+        width: 250px;
+      }
+
+      .copyright {
+        justify-self: center;
+        padding: 30px 0;
       }
     }
   }
