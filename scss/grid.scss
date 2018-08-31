@@ -4,24 +4,6 @@
     "main"
     "footer";
 
-  // .train-header {
-  //   align-items: center;
-  //   display: grid;
-  //   grid-area: header;
-  //   grid-template-areas: 
-  //     "logo . dev";
-  //   top: 0;    
-
-  //   .logo {
-  //     grid-area: logo;
-  //   }
-
-  //   .dev {
-  //     grid-area: dev;
-  //     justify-self: right;
-  //   }
-  // }
-
   .train-main {
     grid-area: main;
     
@@ -33,10 +15,6 @@
       .tech {
         background-color: transparent;
         border-radius: 0;
-
-        &::before {
-          border: none;
-        }
 
         &:first-child {
           justify-self: stretch;
