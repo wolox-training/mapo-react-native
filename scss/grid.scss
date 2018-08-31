@@ -66,12 +66,18 @@
 
         .tech {
           border-top: 2px solid $training-green;
+          margin: 0;
 
           &:first-child {
             border-top: none;
-            grid-column: auto;
-            grid-row: auto;
-            position: static;
+            justify-self: center;
+            border-right: none;
+            max-width: 250px;
+            padding: 20px 20px 10px;
+            
+            .desc {
+              max-width: none;
+            }
           }
 
           &::before, &::after {
