@@ -19,23 +19,6 @@
     text-align: center;
     width: 100%;
 
-    &::before {
-      border: 1px solid $training-green;
-      border-radius: 5px;
-      bottom: 10px;
-      content: '';
-      height: 100%;
-      position: absolute;
-      right: 10px;
-      transition: top 0.5s ease, left 0.5s ease;
-      width: 100%;
-    }
-
-    &:hover::before {
-      left: 10px;
-      top: 10px;
-    }
-
     .logo {        
       height: 100px;
       margin-bottom: 10px;
