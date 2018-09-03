@@ -56,3 +56,53 @@
     }
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  
+  .flex-body {
+    .train-main {
+      .section .techs {
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+
+        .tech {
+          border-top: 2px solid $training-green;
+          margin: 0;
+
+          &:first-child {
+            border-top: none;
+            justify-self: center;
+            border-right: none;
+            max-width: 250px;
+            padding: 20px 20px 10px;
+            
+            .desc {
+              max-width: none;
+            }
+          }
+
+          &::before,
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .train-footer {
+      .txt {
+        font-size: $text-medium;
+      }
+
+      .logo {
+        width: 250px;
+      }
+
+      .copyright {
+        justify-self: center;
+        padding: 30px 0;
+      }
+    }
+  }
+}
+
