@@ -58,6 +58,7 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  
   .flex-body {
     .train-main {
       .section .techs {
@@ -80,7 +81,8 @@
             }
           }
 
-          &::before, &::after {
+          &::before,
+          &::after {
             display: none;
           }
         }
@@ -88,12 +90,6 @@
     }
 
     .train-footer {
-      grid-template-columns: auto;
-      grid-template-areas: 
-        "txt"
-        "logo"
-        "copyright";
-
       .txt {
         font-size: $text-medium;
       }
