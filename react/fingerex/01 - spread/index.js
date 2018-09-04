@@ -7,8 +7,8 @@ export function min(a, ...b) {
 }
 
 export function copy(b) {
-  if (isArray(b)) return b.slice();
-  return Object.assign({}, b);
+  if (isArray(b)) return [...b];
+  return { ...b };
 }
 
 export function reverseMerge(c, d) {
