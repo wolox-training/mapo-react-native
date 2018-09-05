@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Square from '../Square';
+import Square from './app.components/Square';
 
-import styles from './styles.scss';
-
-class Board extends React.Component {
+export class Board extends React.Component {
   renderSquare(i) {
     return <Square />;
   }
@@ -14,18 +12,18 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className={styles.status}>{status}</div>
-        <div className={styles.boardRow}>
+        <div className="status">{status}</div>
+        <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
         </div>
-        <div className={styles.boardRow}>
+        <div className="board-row">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
         </div>
-        <div className={styles.boardRow}>
+        <div className="board-row">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
@@ -34,5 +32,3 @@ class Board extends React.Component {
     );
   }
 }
-
-export default Board;
