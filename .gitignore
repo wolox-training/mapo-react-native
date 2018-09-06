@@ -63,3 +63,6 @@ typings/
 application.css
 .sass-cache/
 application.css.map
+
+react/.DS_Store
+react/intro/
