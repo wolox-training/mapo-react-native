@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { lines } from './constants';
 import Board from './components/Board';
 import styles from './styles.scss';
 
-class Game extends React.Component {
+class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
     stepNumber: 0,
@@ -34,15 +34,12 @@ class Game extends React.Component {
   }
 
   statusCalc = winner => {
-    if (winner) {
-      return 'Winner: ' + winner;
-    } else {
-      return 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    if (winner) return `Winner: ${winner}`;
+    return `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
   };
 
   calculateWinner = squares => {
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i += 1) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
@@ -52,7 +49,7 @@ class Game extends React.Component {
   };
 
   movement = (step, move) => {
-    const desc = move ? 'Go to move #' + move : 'Go to game start';
+    const desc = move ? `Go to move #${move}` : 'Go to game start';
     return (
       <li key={move}>
         <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -70,10 +67,7 @@ class Game extends React.Component {
     return (
       <div className={styles.game}>
         <div className={styles.gameBoard}>
-          <Board
-            squares={current.squares}
-            onClick={this.handleClick}
-          />
+          <Board squares={current.squares} onClick={this.handleClick} />
         </div>
         <div className={styles.gameInfo}>
           <div>{status}</div>
