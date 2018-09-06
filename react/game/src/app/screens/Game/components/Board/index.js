@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Square from '../Square';
 
 import styles from './styles.scss';
 
-class Board extends React.Component {
+class Board extends Component {
   renderSquare(i) {
     return (
       <Square
@@ -16,7 +16,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <div className={styles.status}>{status}</div>
         <div className={styles.boardRow}>
           {this.renderSquare(0)}
@@ -33,7 +33,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
