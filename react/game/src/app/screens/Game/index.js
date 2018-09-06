@@ -1,4 +1,4 @@
-import React, { Component }from 'react';
+import React, { Component } from 'react';
 
 import { lines } from './constants';
 import Board from './components/Board';
@@ -34,14 +34,12 @@ class Game extends Component {
   }
 
   statusCalc = winner => {
-    if (winner) {
-      return `Winner: ${winner}`;
+    if (winner) return `Winner: ${winner}`;
     return `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-    
   };
 
   calculateWinner = squares => {
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i += 1) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
@@ -51,7 +49,7 @@ class Game extends Component {
   };
 
   movement = (step, move) => {
-    const desc = move ? 'Go to move #' + move : 'Go to game start';
+    const desc = move ? `Go to move #${move}` : 'Go to game start';
     return (
       <li key={move}>
         <button onClick={() => this.jumpTo(move)}>{desc}</button>
