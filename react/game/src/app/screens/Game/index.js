@@ -39,8 +39,8 @@ class Game extends Component {
   };
 
   calculateWinner = squares => {
-    for (let i = 0; i < lines.length; i += 1) {
-      const [a, b, c] = lines[i];
+    for (let i = 0; i < LINES.length; i += 1) {
+      const [a, b, c] = LINES[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       }
