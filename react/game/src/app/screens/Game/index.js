@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { lines } from './constants';
+import { LINES } from './constants';
 import Board from './components/Board';
 import styles from './styles.scss';
 
