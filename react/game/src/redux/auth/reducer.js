@@ -5,6 +5,9 @@ const stateReducer = (state = initialState, action) => {
     case 'CORRECT_AUTH':
       state = { ...initialState, loggedin: true };
       break;
+    case 'INCORRECT_AUTH':
+      state = { ...initialState, error: 'authentication error' };
+      break;
     default:
       break;
   }

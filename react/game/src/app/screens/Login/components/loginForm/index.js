@@ -7,9 +7,9 @@ import { required, email, minLength } from '../validation';
 import { customInput } from '../fields';
 
 class LoginForm extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event, values) => {
     event.preventDefault();
-    this.props.handleSubmit();
+    this.props.handleSubmit(values);
   };
   render() {
     return (
