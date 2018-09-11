@@ -7,6 +7,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router": "^4.4.0-alpha.1",
+    "react-router-dom": "^4.4.0-alpha.1",
     "react-validation": "^3.0.7",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
@@ -18,9 +20,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "react-router": "^4.4.0-alpha.1",
-    "react-router-dom": "^4.4.0-alpha.1"
   }
 }

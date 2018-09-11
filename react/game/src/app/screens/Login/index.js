@@ -6,14 +6,14 @@ import LoginForm from './components/loginForm';
 class LoginFormContainer extends Component {
   render() {
     const handleSubmit = () => {
-      this.props.red();
+      this.props.redir();
     };
     return <LoginForm onSubmit={handleSubmit} />;
   }
 }
 
 LoginFormContainer.propTypes = {
-  red: PropTypes.func
+  redir: PropTypes.func
 };
 
 export default LoginFormContainer;

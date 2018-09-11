@@ -6,3 +6,68 @@ body {
 ol, ul {
   padding-left: 30px;
 }
+
+input:not([type='checkbox']) {
+  border-width: 0;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+}
+
+input:not([type='checkbox']) + label {
+  transition: all 0.2s;
+}
+
+input:not([type='checkbox']) + label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  color: gray;
+}
+
+input:not([type='checkbox']):focus + label,
+.dirty input:not([type='checkbox']) + label {
+  font-size: 12px;
+  top: -12px;
+  color: black;
+}
+
+input {
+  outline: 0;
+  padding: 0;
+}
+
+input,
+label,
+button[type='submit'] {
+  font-size: 20px;
+}
+
+select {
+  height: 30px;
+}
+
+label {
+  font-size: 12px;
+}
+
+select {
+  display: block;
+}
+
+select,
+input:not([type='checkbox']),
+button[type='submit'] {
+  width: 100%;
+}
+
+button[type='submit'] {
+  background-color: orange;
+  color: white;
+}
+
+.login-form {
+  max-width: 320px;
+  padding: 30px;
+  margin: auto;
+}

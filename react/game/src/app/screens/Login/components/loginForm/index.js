@@ -5,16 +5,14 @@ import PropTypes from 'prop-types';
 import { required, email, minLength } from '../validation';
 import { customInput } from '../fields';
 
-import styles from './styles.scss';
-
 class LoginForm extends Component {
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.handleSubmit();
+  };
   render() {
-    const handleSubmit = event => {
-      event.preventDefault();
-      this.props.handleSubmit();
-    };
     return (
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <Field name="mail" component={customInput} type="mail" label="e-Mail" validate={[required, email]} />
         <Field
           name="password"
