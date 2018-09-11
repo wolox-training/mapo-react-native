@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
+import { LOGIN_FORM } from '../../../../../constants/formNames';
 import { required, email, minLength } from '../validation';
 import { customInput } from '../fields';
 
@@ -28,10 +29,10 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'login',
+  form: LOGIN_FORM,
   fields: ['username', 'password']
 })(LoginForm);

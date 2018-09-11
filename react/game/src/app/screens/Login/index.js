@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import LoginForm from './components/loginForm';
 
 class LoginFormContainer extends Component {
+  handleSubmit = () => {
+    this.props.redir();
+  };
   render() {
-    const handleSubmit = () => {
-      this.props.redir();
-    };
-    return <LoginForm onSubmit={handleSubmit} />;
+    return <LoginForm onSubmit={this.handleSubmit} />;
   }
 }
 
 LoginFormContainer.propTypes = {
-  redir: PropTypes.func
+  redir: PropTypes.func.isRequired
 };
 
 export default LoginFormContainer;
