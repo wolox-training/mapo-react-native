@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Login from './screens/Login';
@@ -7,23 +7,12 @@ import Game from './screens/Game';
 import PrivateRoute from './components/PrivateRoute';
 
 class App extends Component {
-  state = { loggedin: false };
-
-  setRedirect = () => {
-    this.setState({ loggedin: true });
-  };
-
-  loginProps = () => {
-    if (this.state.loggedin) return <Redirect to="/Game" />;
-    return <Login redir={this.setRedirect} />;
-  };
-
   render() {
     return (
       <Router basename={this.props.path}>
         <Switch>
-          <Route exact path="/" component={this.loginProps} />
-          <PrivateRoute authenticated={this.state.loggedin} path="/game" component={Game} />
+          <Route exact path="/" component={Login} />
+          <PrivateRoute path="/game" component={Game} />
         </Switch>
       </Router>
     );

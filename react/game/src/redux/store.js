@@ -1,8 +1,11 @@
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
+import auth from './auth/reducer';
+
 const reducers = {
-  form: formReducer
+  form: formReducer,
+  auth
 };
 
 const reducer = combineReducers(reducers);
