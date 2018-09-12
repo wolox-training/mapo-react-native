@@ -8,10 +8,14 @@ import loginActions from '../../../redux/auth/actions';
 import LoginForm from './components/loginForm';
 
 class LoginFormContainer extends Component {
-  setRedirect = v => {
-    const { dispatch, history } = this.props;
-    dispatch(loginActions.login(v));
-    history.push('/Game');
+  componentDidUpdate() {
+    const { loggedin, history } = this.props;
+    if (loggedin) history.push('/Game');
+  }
+
+  setRedirect = values => {
+    const { dispatch } = this.props;
+    dispatch(loginActions.login(values));
   };
 
   render() {
@@ -25,8 +29,14 @@ class LoginFormContainer extends Component {
 }
 
 LoginFormContainer.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired
-  error: PropTypes.string
+  history: PropTypes.instanceOf(Object).isRequired,
+  error: PropTypes.string,
+  loggedin: PropTypes.bool
 };
 
-export default withRouter(connect()(LoginFormContainer));
+const mapStateToProps = state => ({
+  loggedin: state.auth.loggedin,
+  error: state.auth.error
+});
+
+export default withRouter(connect(mapStateToProps)(LoginFormContainer));

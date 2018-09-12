@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import ReduxThunk from 'redux-thunk';
 
 import auth from './auth/reducer';
 
@@ -9,6 +10,8 @@ const reducers = {
 };
 
 const reducer = combineReducers(reducers);
-const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer);
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
+const store = createStore(reducer, composeEnhancers(applyMiddleware(ReduxThunk)));
 
 export default store;
