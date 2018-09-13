@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './styles.scss';
 import Elements from './components/Elements';
+import Goback from './Goback';
 
 class Navbar extends Component {
   render() {
     return (
-      <nav className={styles.navbarMenu}>
-        <Elements />
-      </nav>
+      <Fragment>
+        <nav className={styles.navbarMenu}>
+          <Elements />
+        </nav>
+        <Goback />
+      </Fragment>
     );
   }
 }
