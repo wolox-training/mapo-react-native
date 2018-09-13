@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import loginActions from '../../../redux/auth/actions';
+import localService from '../../../services/localService';
 
 import LoginForm from './components/loginForm';
 
@@ -37,7 +38,7 @@ LoginFormContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loggedin: state.auth.loggedin,
+  loggedin: localService.get.status || state.auth.loggedin,
   error: state.auth.error
 });
 

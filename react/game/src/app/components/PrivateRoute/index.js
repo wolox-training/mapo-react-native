@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import Navbar from '../Navbar';
 import LIST from '../../../constants/routes';
+import localService from '../../../services/localService';
 
 class PrivateRoute extends Component {
   res = () => {
@@ -31,7 +32,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loggedin: state.auth.loggedin
+  loggedin: localService.get.status || state.auth.loggedin
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

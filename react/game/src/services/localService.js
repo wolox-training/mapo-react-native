@@ -1,5 +1,10 @@
+const LOCALSTORAGE_NAME = 'GAME_DATA';
+
 const services = {
-  loginAPI: values => API.post(LOGIN_API_PATH, { email: values.mail, password: values.password })
+  set: data => {
+    localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify(data));
+  },
+  get: JSON.parse(localStorage.getItem(LOCALSTORAGE_NAME))
 };
 
 export default services;
