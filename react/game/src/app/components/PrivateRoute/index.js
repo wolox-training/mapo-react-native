@@ -1,12 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Navbar from '../Navbar';
+
 class PrivateRoute extends Component {
   res = () => {
     const AuthComponent = this.props.component;
-    return this.props.loggedin ? <AuthComponent path={this.props.path} /> : <Redirect to="/" />;
+    return this.props.loggedin ? (
+      <Fragment>
+        <Navbar />
+        <AuthComponent path={this.props.path} />
+      </Fragment>
+    ) : (
+      <Redirect to="/" />
+    );
   };
 
   render() {
