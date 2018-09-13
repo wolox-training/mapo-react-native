@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import loginActions from '../../../redux/auth/actions';
 import styles from '../Navbar/styles.scss';
+import LIST from '../../../constants/routes';
 
 class Logout extends Component {
   componentDidUpdate() {
     const { loggedin, history } = this.props;
-    if (!loggedin) history.push('/');
+    if (!loggedin) history.push(LIST.LOGIN.path);
   }
 
   logout = e => {
@@ -28,7 +29,9 @@ class Logout extends Component {
 
 Logout.propTypes = {
   loggedin: PropTypes.bool.isRequired,
-  history: PropTypes.instanceOf(Object)
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 };
 
 const mapStateToProps = state => ({

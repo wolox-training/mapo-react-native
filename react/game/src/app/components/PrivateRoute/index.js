@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Navbar from '../Navbar';
+import LIST from '../../../constants/routes';
 
 class PrivateRoute extends Component {
   res = () => {
@@ -14,7 +15,7 @@ class PrivateRoute extends Component {
         <AuthComponent path={this.props.path} />
       </Fragment>
     ) : (
-      <Redirect to="/" />
+      <Redirect to={LIST.LOGIN.path} />
     );
   };
 
