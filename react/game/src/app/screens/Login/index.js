@@ -29,7 +29,9 @@ class LoginFormContainer extends Component {
 }
 
 LoginFormContainer.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
   error: PropTypes.string,
   loggedin: PropTypes.bool
 };
