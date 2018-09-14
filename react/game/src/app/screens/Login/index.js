@@ -4,16 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import loginActions from '../../../redux/auth/actions';
-import localService from '../../../services/localService';
 
 import LoginForm from './components/loginForm';
 
 class LoginFormContainer extends Component {
-  componentDidUpdate() {
-    const { loggedin, history } = this.props;
-    if (loggedin) history.push('/Game');
-  }
-
   setRedirect = values => {
     const { dispatch } = this.props;
     dispatch(loginActions.login(values));
@@ -30,15 +24,10 @@ class LoginFormContainer extends Component {
 }
 
 LoginFormContainer.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
-  error: PropTypes.string,
-  loggedin: PropTypes.bool
+  error: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-  loggedin: localService.get.status || state.auth.loggedin,
   error: state.auth.error
 });
 

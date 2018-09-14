@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import styles from './styles.scss';
 import Elements from './components/Elements';
-import Goback from './Goback';
+import Goback from './components/Goback';
 
 class Navbar extends Component {
   render() {
