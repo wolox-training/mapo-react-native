@@ -8,11 +8,11 @@ import Logout from '../../../Logout';
 const MENULIST = Object.values(LIST);
 
 class Element extends Component {
-  renderList = (item, i) =>
+  renderList = item =>
     item.name !== 'login' && (
       <NavLink
         exact
-        key={i}
+        key={item.name}
         className={styles.navbarMenuLink}
         activeClassName={styles.navbarMenuLinkActive}
         to={item.path}
