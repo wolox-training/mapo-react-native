@@ -5,31 +5,26 @@ import styles from '../../styles.scss';
 import LIST from '../../../../../constants/routes';
 import Logout from '../../../Logout';
 
+const MENULIST = Object.values(LIST);
+
 class Element extends Component {
-  menuList = obj => {
-    const mapped = [];
-    for (const item of Object.values(obj)) { // eslint-disable-line
-      if (item.name !== 'login') {
-        mapped.push(
-          <NavLink
-            exact
-            key={mapped.length}
-            className={styles.navbarMenuLink}
-            activeClassName={styles.navbarMenuLinkActive}
-            to={item.path}
-          >
-            {item.name}
-          </NavLink>
-        );
-      }
-    }
-    return mapped;
-  };
+  renderList = (item, i) =>
+    item.name !== 'login' && (
+      <NavLink
+        exact
+        key={i}
+        className={styles.navbarMenuLink}
+        activeClassName={styles.navbarMenuLinkActive}
+        to={item.path}
+      >
+        {item.name}
+      </NavLink>
+    );
 
   render() {
     return (
       <Fragment>
-        {this.menuList(LIST)}
+        {MENULIST.map(this.renderList)}
         <Logout />
       </Fragment>
     );
