@@ -8,6 +8,9 @@ const stateReducer = (state = initialState, action) => {
     case 'CHECK_AUTH_FAILURE':
       state = { ...initialState, error: action.payload.error.message };
       break;
+    case 'LOGOUT':
+      state = { loggedin: false, error: '' };
+      break;
     default:
       break;
   }
