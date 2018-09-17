@@ -5,12 +5,14 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 
 import auth from './auth/reducer';
+import user from './user/reducer';
 
 export const history = createBrowserHistory();
 
 const reducers = {
   form: formReducer,
-  auth
+  auth,
+  user
 };
 
 const reducer = combineReducers(reducers);

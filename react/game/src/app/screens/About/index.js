@@ -35,7 +35,7 @@ About.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user
+  user: state.user
 });
 
 export default withRouter(connect(mapStateToProps)(About));
