@@ -1,8 +1,8 @@
-import { LOGIN_API_PATH } from '../constants/apiNames';
+import { USER_INFO_PATH } from '../constants/apiNames';
 import API from '../config/API';
 
 const services = {
-  loginAPI: values => API.get(LOGIN_API_PATH, { email: values.mail, password: values.password })
+  get: (id, token) => API.get(`${USER_INFO_PATH + id}?access_token=${token}`)
 };
 
 export default services;
