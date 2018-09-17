@@ -12,7 +12,7 @@ class Navbar extends Component {
         <nav className={styles.navbarMenu}>
           <Elements />
         </nav>
-        <Goback />
+        <Goback style={styles.navbarMenuLinkButton} />
       </Fragment>
     );
   }

@@ -8,7 +8,6 @@ import userActions from '../user/actions';
 const CHECK_AUTH_SUCCESS = 'CHECK_AUTH_SUCCESS';
 const CHECK_AUTH_FAILURE = 'CHECK_AUTH_FAILURE';
 const LOGOUT = 'LOGOUT';
-const LOCAL_DATA = localServices.get;
 
 const actionCreators = {
   login: values => async dispatch => {
@@ -27,6 +26,7 @@ const actionCreators = {
     dispatch(push(routes.LOGIN.path));
   },
   localCheck: () => async dispatch => {
+    const LOCAL_DATA = localServices.get;
     if (LOCAL_DATA !== null && LOCAL_DATA.status) {
       dispatch({ type: CHECK_AUTH_SUCCESS, payload: LOCAL_DATA.token });
       dispatch(userActions.local());

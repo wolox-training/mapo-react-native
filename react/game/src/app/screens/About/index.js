@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import userTypes from '../../../types/userTypes';
+
 import styles from './styles.scss';
 
 class About extends Component {
@@ -13,16 +15,16 @@ class About extends Component {
         <h2 className={styles.title}>About - {user.name}</h2>
         <div className={styles.about}>
           <p className={styles.paragraph}>
-            <span>Username:</span> {user.username}
+            <span className={styles.paragraphSpan}>Username:</span> {user.username}
           </p>
           <p className={styles.paragraph}>
-            <span>Date of birth:</span> {user.date_of_birth}
+            <span className={styles.paragraphSpan}>Date of birth:</span> {user.date_of_birth}
           </p>
           <p className={styles.paragraph}>
-            <span>e-Mail:</span> {user.email}
+            <span className={styles.paragraphSpan}>e-Mail:</span> {user.email}
           </p>
           <p className={styles.paragraph}>
-            <span>Resume:</span> {user.about}
+            <span className={styles.paragraphSpan}>Resume:</span> {user.about}
           </p>
         </div>
       </Fragment>
@@ -31,7 +33,7 @@ class About extends Component {
 }
 
 About.propTypes = {
-  user: PropTypes.shape(Object)
+  user: PropTypes.shape(userTypes.user).isRequired
 };
 
 const mapStateToProps = state => ({

@@ -18,7 +18,6 @@ const reducers = {
 const reducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
-// const store = createStore(reducer, composeEnhancers(applyMiddleware(ReduxThunk)));
 const store = createStore(
   connectRouter(history)(reducer),
   composeEnhancers(applyMiddleware(routerMiddleware(history), ReduxThunk))

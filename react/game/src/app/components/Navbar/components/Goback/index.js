@@ -13,7 +13,7 @@ class Goback extends Component {
 
   render() {
     return (
-      <button onClick={this.goBack} className={styles.gobackButton}>
+      <button onClick={this.goBack} className={`${styles.gobackButton} ${this.props.style}`}>
         Go Back
       </button>
     );
@@ -23,7 +23,8 @@ class Goback extends Component {
 Goback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  style: PropTypes.string.isRequired
 };
 
 export default withRouter(connect()(Goback));
