@@ -1,4 +1,4 @@
-const initialState = { loggedin: false, error: '' };
+const initialState = { loggedin: false, error: '', initialLoading: true };
 
 const stateReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ const stateReducer = (state = initialState, action) => {
     default:
       break;
   }
-  return state;
+  return { ...state, initialLoading: false };
 };
 
 export default stateReducer;

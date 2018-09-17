@@ -7,6 +7,7 @@ import userActions from '../user/actions';
 
 const CHECK_AUTH_SUCCESS = 'CHECK_AUTH_SUCCESS';
 const CHECK_AUTH_FAILURE = 'CHECK_AUTH_FAILURE';
+const INITIAL_LOADING_SUCCESS = 'INITIAL_LOADING_SUCCESS';
 const LOGOUT = 'LOGOUT';
 
 const actionCreators = {
@@ -30,6 +31,7 @@ const actionCreators = {
     if (LOCAL_DATA !== null && LOCAL_DATA.status) {
       dispatch({ type: CHECK_AUTH_SUCCESS, payload: LOCAL_DATA.token });
       dispatch(userActions.local());
+      dispatch({ type: INITIAL_LOGIN_SUCCESS });
     }
   }
 };
