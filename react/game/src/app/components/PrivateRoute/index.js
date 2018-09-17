@@ -7,46 +7,20 @@ import Navbar from '../Navbar';
 import LIST from '../../../constants/routes';
 
 class PrivateRoute extends Component {
-  res = ({ ...routeProps }) => {
-    const { component: AuthComponent, isPrivate, isPublic, loggedin, location } = this.props;
-
-    if (loggedin && isPublic) {
+  res = () => {
+    const { component: AuthComponent, loggedin, isPrivate, path } = this.props;
+    if (!loggedin && isPrivate) return <Redirect to={LIST.LOGIN.path} />;
+    if (loggedin && isPrivate)
       return (
-        <Redirect
-          to={{
-            pathname: LIST.GAME.path,
-            state: { from: location }
-          }}
-        />
+        <Fragment>
+          <Navbar />
+          <AuthComponent path={path} />
+        </Fragment>
       );
-    } else if (!loggedin && isPrivate) {
-      return (
-        <Redirect
-          to={{
-            pathname: LIST.LOGIN.path,
-            state: { from: location }
-          }}
-        />
-      );
-    }
-    return <AuthComponent {...routeProps} />;
-
-    // if (public && !loggedin) return <AuthComponent path={path} />;
-    // if (public && loggedin) return <Redirect to={LIST.GAME.path} />;
-    // if (!public && loggedin) {
-    //   return (
-    //     <Fragment>
-    //       <Navbar />
-    //       <AuthComponent path={this.props.path} />
-    //     </Fragment>
-    //   );
-    // }
-    // if (!this.props.public && !this.props.loggedin) return <Redirect to={LIST.LOGIN.path} />;
   };
 
   render() {
-    const { isPrivate, isPublic, loggedin, component, ...props } = this.props;
-    return <Route {...props} render={this.res} />;
+    return <Route render={this.res} />;
   }
 }
 
@@ -54,7 +28,7 @@ PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   component: PropTypes.func.isRequired,
   loggedin: PropTypes.bool.isRequired,
-  public: PropTypes.bool
+  isPrivate: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

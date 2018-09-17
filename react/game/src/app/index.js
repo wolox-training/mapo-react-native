@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
@@ -13,16 +13,14 @@ import About from './screens/About';
 import PrivateRoute from './components/PrivateRoute';
 
 class App extends Component {
-  componentDidMount() {
+  render() {
     const { dispatch } = this.props;
     dispatch(loginActions.localCheck());
-  }
 
-  render() {
     return (
       <ConnectedRouter history={history}>
         <Switch>
-          <PrivateRoute exact path={LIST.LOGIN.path} component={Login} isPublic />
+          <Route exact path={LIST.LOGIN.path} component={Login} />
           <PrivateRoute path={LIST.GAME.path} component={Game} isPrivate />
           <PrivateRoute path={LIST.ABOUT.path} component={About} isPrivate />
         </Switch>
