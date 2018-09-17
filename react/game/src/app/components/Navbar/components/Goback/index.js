@@ -13,7 +13,7 @@ class Goback extends Component {
 
   render() {
     return (
-      <button onClick={this.goBack} className={`${styles.gobackButton} ${this.props.style}`}>
+      <button onClick={this.goBack} className={`${this.props.style} ${styles.gobackButton}`}>
         Go Back
       </button>
     );
