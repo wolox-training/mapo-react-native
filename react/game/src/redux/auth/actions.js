@@ -2,7 +2,7 @@ import { push } from 'connected-react-router';
 
 import Services from '../../services/authServices';
 import localServices from '../../services/localService';
-import userInfo from '../../services/userInfo';
+import userInfo from '../../services/userinfo';
 import routes from '../../constants/routes';
 
 const CHECK_AUTH_SUCCESS = 'CHECK_AUTH_SUCCESS';
