@@ -4,17 +4,18 @@ const stateReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHECK_AUTH_SUCCESS':
       state = { ...initialState, loggedin: true, token: action.payload };
-      break;
+      return state;
     case 'CHECK_AUTH_FAILURE':
       state = { ...initialState, error: action.payload.error.message };
-      break;
+      return state;
     case 'LOGOUT':
       state = { loggedin: false, error: '' };
-      break;
+      return state;
+    case 'INITIAL_LOADING_SUCCESS':
+      return { ...state, initialLoading: false };
     default:
-      break;
+      return state;
   }
-  return { ...state, initialLoading: false };
 };
 
 export default stateReducer;
