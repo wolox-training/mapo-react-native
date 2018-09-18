@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import loginActions from '../../../redux/auth/actions';
 import LIST from '../../../constants/routes';
@@ -41,4 +42,9 @@ const mapStateToProps = state => ({
   loggedin: state.auth.loggedin
 });
 
-export default withRouter(connect(mapStateToProps)(LoginFormContainer));
+const enhance = compose(
+  withRouter,
+  connect(mapStateToProps)
+);
+
+export default enhance(LoginFormContainer);

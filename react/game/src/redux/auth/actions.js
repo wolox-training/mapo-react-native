@@ -33,7 +33,9 @@ const actionCreators = {
       dispatch(userActions.local());
       dispatch({ type: CHECK_AUTH_SUCCESS, payload: LOCAL_DATA.token });
     }
-    dispatch({ type: INITIAL_LOADING_SUCCESS });
+    setTimeout(() => {
+      dispatch({ type: INITIAL_LOADING_SUCCESS });
+    }, 2000);
   }
 };
 
