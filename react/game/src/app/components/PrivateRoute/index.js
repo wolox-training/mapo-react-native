@@ -8,15 +8,15 @@ import LIST from '../../../constants/routes';
 
 class PrivateRoute extends Component {
   res = () => {
-    const AuthComponent = this.props.component;
-    return this.props.loggedin ? (
-      <Fragment>
-        <Navbar />
-        <AuthComponent path={this.props.path} />
-      </Fragment>
-    ) : (
-      <Redirect to={LIST.LOGIN.path} />
-    );
+    const { component: AuthComponent, loggedin, isPrivate, path } = this.props;
+    if (!loggedin && isPrivate) return <Redirect to={LIST.LOGIN.path} />;
+    if (loggedin && isPrivate)
+      return (
+        <Fragment>
+          <Navbar />
+          <AuthComponent path={path} />
+        </Fragment>
+      );
   };
 
   render() {
@@ -27,7 +27,8 @@ class PrivateRoute extends Component {
 PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   component: PropTypes.func.isRequired,
-  loggedin: PropTypes.bool.isRequired
+  loggedin: PropTypes.bool.isRequired,
+  isPrivate: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
