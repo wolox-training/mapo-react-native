@@ -8,6 +8,8 @@ import userActions from '../user/actions';
 const CHECK_AUTH_SUCCESS = 'CHECK_AUTH_SUCCESS';
 const CHECK_AUTH_FAILURE = 'CHECK_AUTH_FAILURE';
 const INITIAL_LOADING_SUCCESS = 'INITIAL_LOADING_SUCCESS';
+const LOGGING_LOADING_ACTIVE = 'LOGGING_LOADING_ACTIVE';
+const LOGGING_LOADING_INACTIVE = 'LOGGING_LOADING_INACTIVE';
 const LOGOUT = 'LOGOUT';
 const STORAGE_KEY = 'AUTH';
 
@@ -36,6 +38,12 @@ const actionCreators = {
     setTimeout(() => {
       dispatch({ type: INITIAL_LOADING_SUCCESS });
     }, 2000);
+  },
+  loaderActive: () => dispatch => {
+    dispatch({ type: LOGGING_LOADING_ACTIVE, payload: {} });
+  },
+  loaderInactive: () => dispatch => {
+    dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
   }
 };
 
