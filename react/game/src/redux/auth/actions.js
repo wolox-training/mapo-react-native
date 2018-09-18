@@ -20,14 +20,12 @@ const actionCreators = {
       dispatch({ type: CHECK_AUTH_SUCCESS, payload: response.data });
       dispatch(push(routes.GAME.path));
     } else dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
-    dispatch({ type: INITIAL_LOADING_SUCCESS });
   },
   logout: () => async dispatch => {
     localServices.delete(STORAGE_KEY);
     dispatch({ type: LOGOUT, payload: {} });
     dispatch(userActions.delete());
     dispatch(push(routes.LOGIN.path));
-    dispatch({ type: INITIAL_LOADING_SUCCESS });
   },
   localCheck: () => async dispatch => {
     const LOCAL_DATA = localServices.get(STORAGE_KEY);
