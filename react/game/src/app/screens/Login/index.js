@@ -1,44 +1,40 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import loginActions from '../../../redux/auth/actions';
-import LIST from '../../../constants/routes';
+import withLoading from '../../components/WithLoading';
 
 import LoginForm from './components/loginForm';
+import withAuth from './components/withAuth';
 
 class LoginFormContainer extends Component {
-  setRedirect = values => {
+  setRedirect = async values => {
     const { dispatch } = this.props;
     dispatch(loginActions.login(values));
   };
 
-  checkLogInStatus = () => {
-    const { loggedin } = this.props;
-    return loggedin ? (
-      <Redirect to={LIST.GAME.path} />
-    ) : (
+  render() {
+    return (
       <Fragment>
         <LoginForm onSubmit={this.setRedirect} />
-        <p>{this.props.error}</p>
       </Fragment>
     );
-  };
-
-  render() {
-    return this.checkLogInStatus();
   }
 }
 
-LoginFormContainer.propTypes = {
-  error: PropTypes.string,
-  loggedin: PropTypes.bool.isRequired
-};
-
 const mapStateToProps = state => ({
   error: state.auth.error,
-  loggedin: state.auth.loggedin
+  loggedin: state.auth.loggedin,
+  loader: state.auth.loggingLoading
 });
 
-export default withRouter(connect(mapStateToProps)(LoginFormContainer));
+const enhance = compose(
+  withRouter,
+  connect(mapStateToProps),
+  withAuth(props => props.loggedin, props => props.error),
+  withLoading(props => props.loader, 'Validating data ...')
+);
+
+export default enhance(LoginFormContainer);

@@ -1,4 +1,4 @@
-const initialState = { loggedin: false, error: '', initialLoading: true };
+const initialState = { loggedin: false, error: '', initialLoading: true, loggingLoading: false };
 
 const stateReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,6 +13,10 @@ const stateReducer = (state = initialState, action) => {
       return state;
     case 'INITIAL_LOADING_SUCCESS':
       return { ...state, initialLoading: false };
+    case 'LOGGING_LOADING_ACTIVE':
+      return { ...state, loggingLoading: true };
+    case 'LOGGING_LOADING_INACTIVE':
+      return { ...state, loggingLoading: false };
     default:
       return state;
   }

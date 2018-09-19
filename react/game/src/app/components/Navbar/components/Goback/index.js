@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import styles from './styles.scss';
 
@@ -27,4 +28,9 @@ Goback.propTypes = {
   style: PropTypes.string.isRequired
 };
 
-export default withRouter(connect()(Goback));
+const enhance = compose(
+  withRouter,
+  connect()
+);
+
+export default enhance(Goback);

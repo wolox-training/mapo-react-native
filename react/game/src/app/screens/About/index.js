@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import userTypes from '../../../types/userTypes';
 
@@ -40,4 +41,9 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default withRouter(connect(mapStateToProps)(About));
+const enhance = compose(
+  withRouter,
+  connect(mapStateToProps)
+);
+
+export default enhance(About);

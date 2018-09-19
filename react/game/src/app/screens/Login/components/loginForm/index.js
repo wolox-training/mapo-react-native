@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
@@ -11,6 +14,7 @@ class LoginForm extends Component {
     event.preventDefault();
     this.props.handleSubmit(values);
   };
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -32,7 +36,12 @@ LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 };
 
-export default reduxForm({
-  form: LOGIN_FORM,
-  fields: ['username', 'password']
-})(LoginForm);
+const enhance = compose(
+  withRouter,
+  connect(),
+  reduxForm({
+    form: LOGIN_FORM
+  })
+);
+
+export default enhance(LoginForm);

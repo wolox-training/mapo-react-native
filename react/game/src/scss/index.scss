@@ -1,6 +1,6 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  margin: 0;
 }
 
 ol, ul {
@@ -71,3 +71,19 @@ button[type='submit'] {
   padding: 30px;
   margin: auto;
 }
+
+.loader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.loader-title {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
+
