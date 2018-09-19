@@ -26,7 +26,7 @@ class LoginFormContainer extends Component {
 
 const mapStateToProps = state => ({
   error: state.auth.authError,
-  loggedin: state.auth.auth.status,
+  loggedin: state.auth.auth !== null,
   loader: state.auth.authLoading
 });
 

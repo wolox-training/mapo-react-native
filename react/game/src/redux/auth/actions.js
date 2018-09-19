@@ -24,16 +24,24 @@ export const actionCreators = {
         dispatch(userActions.set(response.data.userId, response.data.id));
         dispatch(push(routes.GAME.path));
       })
-    ]
+    ],
+    successSelector: response => ({ status: response.ok, token: response.data }),
+    failureSelector: response => response.data.error.message
   }),
+  logout: () => async dispatch => {
+    localServices.delete(STORAGE_KEY);
+    dispatch({ type: actions.LOGOUT, target: 'auth', payload: null });
+    dispatch(userActions.delete());
+    dispatch(push(routes.LOGIN.path));
+  },
   localCheck: () => async dispatch => {
     const LOCAL_DATA = localServices.get(STORAGE_KEY);
     if (LOCAL_DATA !== null) {
       dispatch(userActions.local());
-      dispatch({ type: [actions.CHECK_AUTH_SUCCESS], target: 'auth', payload: LOCAL_DATA });
+      dispatch({ type: actions.CHECK_AUTH_SUCCESS, target: 'auth', payload: LOCAL_DATA });
     }
     setTimeout(() => {
-      dispatch({ type: [actions.INITIAL_LOADING_SUCCESS], target: 'initialLoading' });
+      dispatch({ type: actions.INITIAL_LOADING_SUCCESS, target: 'initialLoading' });
     }, 2000);
   }
 };
