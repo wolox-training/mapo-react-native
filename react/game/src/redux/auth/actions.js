@@ -15,14 +15,20 @@ const STORAGE_KEY = 'AUTH';
 
 const actionCreators = {
   login: values => async dispatch => {
+    dispatch({ type: LOGGING_LOADING_ACTIVE, payload: {} });
     const response = await Services.loginAPI(values);
     if (response.ok) {
       await localServices.set(STORAGE_KEY, { status: true, token: response.data });
       dispatch(userActions.set(response.data.userId, response.data.id));
-      dispatch({ type: CHECK_AUTH_SUCCESS, payload: response.data });
-      dispatch(push(routes.GAME.path));
+      setTimeout(() => {
+        dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
+        dispatch({ type: CHECK_AUTH_SUCCESS, payload: response.data });
+      }, 2000);
     } else {
-      dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
+      await dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
+      setTimeout(() => {
+        dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
+      }, 2000);
     }
   },
   logout: () => async dispatch => {

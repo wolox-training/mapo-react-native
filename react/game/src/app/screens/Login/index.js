@@ -12,11 +12,7 @@ import withAuth from './components/withAuth';
 class LoginFormContainer extends Component {
   setRedirect = async values => {
     const { dispatch } = this.props;
-    await dispatch(loginActions.loaderActive());
-    await setTimeout(() => {
-      dispatch(loginActions.login(values));
-    }, 2000);
-    dispatch(loginActions.loaderInactive());
+    dispatch(loginActions.login(values));
   };
 
   render() {

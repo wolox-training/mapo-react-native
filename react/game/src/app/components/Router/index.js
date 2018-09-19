@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { connect } from 'react-redux';
@@ -12,19 +12,15 @@ import About from '../../screens/About';
 import WithLoading from '../WithLoading';
 import PrivateRoute from '../PrivateRoute';
 
-class Router extends Component {
-  render() {
-    return (
-      <ConnectedRouter history={history}>
-        <Switch>
-          <Route exact path={LIST.LOGIN.path} component={Login} />
-          <PrivateRoute path={LIST.GAME.path} component={Game} isPrivate />
-          <PrivateRoute path={LIST.ABOUT.path} component={About} isPrivate />
-        </Switch>
-      </ConnectedRouter>
-    );
-  }
-}
+const Router = () => (
+  <ConnectedRouter history={history}>
+    <Switch>
+      <Route exact path={LIST.LOGIN.path} component={Login} />
+      <PrivateRoute path={LIST.GAME.path} component={Game} isPrivate />
+      <PrivateRoute path={LIST.ABOUT.path} component={About} isPrivate />
+    </Switch>
+  </ConnectedRouter>
+);
 
 const mapStateToProps = state => ({
   initialLoading: state.auth.initialLoading
