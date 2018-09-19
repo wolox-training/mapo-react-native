@@ -21,7 +21,9 @@ const actionCreators = {
       dispatch(userActions.set(response.data.userId, response.data.id));
       dispatch({ type: CHECK_AUTH_SUCCESS, payload: response.data });
       dispatch(push(routes.GAME.path));
-    } else dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
+    } else {
+      dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
+    }
   },
   logout: () => async dispatch => {
     localServices.delete(STORAGE_KEY);
@@ -43,7 +45,9 @@ const actionCreators = {
     dispatch({ type: LOGGING_LOADING_ACTIVE, payload: {} });
   },
   loaderInactive: () => dispatch => {
-    dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
+    setTimeout(() => {
+      dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
+    }, 2000);
   }
 };
 

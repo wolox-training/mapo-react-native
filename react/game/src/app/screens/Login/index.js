@@ -1,35 +1,32 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
 import loginActions from '../../../redux/auth/actions';
+import withLoading from '../../components/WithLoading';
 
 import LoginForm from './components/loginForm';
 import withAuth from './components/withAuth';
-import withLoading from './components/withLoading';
 
 class LoginFormContainer extends Component {
   setRedirect = async values => {
     const { dispatch } = this.props;
     await dispatch(loginActions.loaderActive());
-    dispatch(loginActions.login(values));
+    await setTimeout(() => {
+      dispatch(loginActions.login(values));
+    }, 2000);
+    dispatch(loginActions.loaderInactive());
   };
 
   render() {
     return (
       <Fragment>
         <LoginForm onSubmit={this.setRedirect} />
-        <p>{this.props.error}</p>
       </Fragment>
     );
   }
 }
-
-LoginFormContainer.propTypes = {
-  error: PropTypes.string
-};
 
 const mapStateToProps = state => ({
   error: state.auth.error,
@@ -40,8 +37,8 @@ const mapStateToProps = state => ({
 const enhance = compose(
   withRouter,
   connect(mapStateToProps),
-  withAuth(props => props.loggedin),
-  withLoading(props => props.loader)
+  withAuth(props => props.loggedin, props => props.error),
+  withLoading(props => props.loader, 'Validating data ...')
 );
 
 export default enhance(LoginFormContainer);

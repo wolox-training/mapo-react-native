@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  WithLoading(props => props.initialLoading)
+  WithLoading(props => props.initialLoading, 'Loading game ...')
 );
 
 export default enhance(Router);
