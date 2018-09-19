@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import ReduxThunk from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
+import { fetchMiddleware } from 'redux-recompose';
 
 import auth from './auth/reducer';
 import user from './user/reducer';
@@ -20,7 +21,7 @@ const reducer = combineReducers(reducers);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const store = createStore(
   connectRouter(history)(reducer),
-  composeEnhancers(applyMiddleware(routerMiddleware(history), ReduxThunk))
+  composeEnhancers(applyMiddleware(routerMiddleware(history), ReduxThunk, fetchMiddleware))
 );
 
 export default store;

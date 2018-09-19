@@ -1,60 +1,39 @@
 import { push } from 'connected-react-router';
+import { withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
 
 import Services from '../../services/authServices';
 import localServices from '../../services/localService';
 import routes from '../../constants/routes';
 import userActions from '../user/actions';
 
-const CHECK_AUTH_SUCCESS = 'CHECK_AUTH_SUCCESS';
-const CHECK_AUTH_FAILURE = 'CHECK_AUTH_FAILURE';
-const INITIAL_LOADING_SUCCESS = 'INITIAL_LOADING_SUCCESS';
-const LOGGING_LOADING_ACTIVE = 'LOGGING_LOADING_ACTIVE';
-const LOGGING_LOADING_INACTIVE = 'LOGGING_LOADING_INACTIVE';
-const LOGOUT = 'LOGOUT';
+const completedTypes = completeTypes(['CHECK_AUTH'], ['INITIAL_LOADING_SUCCESS', 'LOGOUT']);
+
+export const actions = createTypes(completedTypes, '@@AUTH');
+
 const STORAGE_KEY = 'AUTH';
 
-const actionCreators = {
-  login: values => async dispatch => {
-    dispatch({ type: LOGGING_LOADING_ACTIVE, payload: {} });
-    const response = await Services.loginAPI(values);
-    if (response.ok) {
-      await localServices.set(STORAGE_KEY, { status: true, token: response.data });
-      dispatch(userActions.set(response.data.userId, response.data.id));
-      setTimeout(() => {
-        dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
-        dispatch({ type: CHECK_AUTH_SUCCESS, payload: response.data });
-      }, 2000);
-    } else {
-      await dispatch({ type: CHECK_AUTH_FAILURE, payload: response.data });
-      setTimeout(() => {
-        dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
-      }, 2000);
-    }
-  },
-  logout: () => async dispatch => {
-    localServices.delete(STORAGE_KEY);
-    dispatch({ type: LOGOUT, payload: {} });
-    dispatch(userActions.delete());
-    dispatch(push(routes.LOGIN.path));
-  },
+export const actionCreators = {
+  login: values => ({
+    type: actions.CHECK_AUTH,
+    service: Services.loginAPI,
+    payload: values,
+    target: 'auth',
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        localServices.set(STORAGE_KEY, { status: true, token: response.data });
+        dispatch(userActions.set(response.data.userId, response.data.id));
+        dispatch(push(routes.GAME.path));
+      })
+    ]
+  }),
   localCheck: () => async dispatch => {
     const LOCAL_DATA = localServices.get(STORAGE_KEY);
-    if (LOCAL_DATA !== null && LOCAL_DATA.status) {
+    if (LOCAL_DATA !== null) {
       dispatch(userActions.local());
-      dispatch({ type: CHECK_AUTH_SUCCESS, payload: LOCAL_DATA.token });
+      dispatch({ type: [actions.CHECK_AUTH_SUCCESS], target: 'auth', payload: LOCAL_DATA });
     }
     setTimeout(() => {
-      dispatch({ type: INITIAL_LOADING_SUCCESS });
-    }, 2000);
-  },
-  loaderActive: () => dispatch => {
-    dispatch({ type: LOGGING_LOADING_ACTIVE, payload: {} });
-  },
-  loaderInactive: () => dispatch => {
-    setTimeout(() => {
-      dispatch({ type: LOGGING_LOADING_INACTIVE, payload: {} });
+      dispatch({ type: [actions.INITIAL_LOADING_SUCCESS], target: 'initialLoading' });
     }, 2000);
   }
 };
-
-export default actionCreators;

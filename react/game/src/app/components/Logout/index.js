@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import loginActions from '../../../redux/auth/actions';
+import { actionCreators as loginActions } from '../../../redux/auth/actions';
 import styles from '../Navbar/styles.scss';
 
 class Logout extends Component {
@@ -28,7 +28,7 @@ Logout.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loggedin: state.auth.loggedin
+  loggedin: state.auth.auth.status
 });
 
 export default connect(mapStateToProps)(Logout);
