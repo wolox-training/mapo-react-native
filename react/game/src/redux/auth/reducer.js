@@ -1,6 +1,6 @@
 const initialState = { loggedin: false, error: '', initialLoading: true, loggingLoading: false };
 
-const stateReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHECK_AUTH_SUCCESS':
       state = { ...state, loggedin: true, token: action.payload };
@@ -22,4 +22,19 @@ const stateReducer = (state = initialState, action) => {
   }
 };
 
-export default stateReducer;
+
+const onLoading = (state, action) => ({ ...state, loggingLoading: true });
+const onSuccess = (state, action) => ({ ...state, loggedin: true, token: action.payload });
+
+const reducerDescription = {
+  'CHECK_AUTH': onLoading(),
+  'CHECK_AUTH_SUCCESS': onSuccess(),
+  'CHECK_AUTH_FAILURE': onFailure(),
+  'LOGOUT': onLogout(),
+  'INITIAL_LOADING_SUCCESS': onInitial(),
+  'LOGGING_LOADING_ACTIVE':
+  'LOGGING_LOADING_INACTIVE':
+}
+
+const reducer = createReducer(initialState, reducerDescription);
+export default reducer;
