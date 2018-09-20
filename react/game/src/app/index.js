@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import loginActions from '../redux/auth/actions';
+import { actionCreators as loginActions } from '../redux/auth/actions';
 
 import Router from './components/Router';
 

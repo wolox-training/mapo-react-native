@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import loginActions from '../../../redux/auth/actions';
+import { actionCreators as loginActions } from '../../../redux/auth/actions';
 import withLoading from '../../components/WithLoading';
 
 import LoginForm from './components/loginForm';
@@ -25,9 +25,9 @@ class LoginFormContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.auth.error,
-  loggedin: state.auth.loggedin,
-  loader: state.auth.loggingLoading
+  error: state.auth.authError,
+  loggedin: state.auth.auth !== null,
+  loader: state.auth.authLoading
 });
 
 const enhance = compose(

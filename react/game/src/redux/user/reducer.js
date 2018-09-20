@@ -1,17 +1,20 @@
-const initialState = {};
+import { createReducer, completeState, completeReducer, onSetValue } from 'redux-recompose';
 
-const userReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_INFO':
-      state = { ...initialState, ...action.payload };
-      break;
-    case 'DELETE_INFO':
-      state = { ...initialState };
-      break;
-    default:
-      break;
+import DEFAULT_USER from '../../constants/defaultUser';
+
+import { actions } from './actions';
+
+const initialStateDescription = { user: DEFAULT_USER };
+
+const initialState = completeState(initialStateDescription);
+
+const reducerDescription = {
+  primaryActions: [actions.SET_INFO],
+  override: {
+    [actions.DELETE_INFO]: onSetValue(DEFAULT_USER)
   }
-  return state;
 };
 
-export default userReducer;
+const reducer = createReducer(initialState, completeReducer(reducerDescription));
+
+export default reducer;

@@ -1,25 +1,33 @@
+import { withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
+
 import localServices from '../../services/localService';
 import userInfo from '../../services/userinfo';
 
-const SET_INFO = 'SET_INFO';
-const DELETE_INFO = 'DELETE_INFO';
+const completedTypes = completeTypes(['SET_INFO'], ['DELETE_INFO']);
+
+export const actions = createTypes(completedTypes, '@@USER');
+
 const STORAGE_KEY = 'USER';
 
 const actionCreators = {
-  set: (id, token) => async dispatch => {
-    const response = await userInfo.get(id, token);
-    if (response.ok) {
-      localServices.set(STORAGE_KEY, response.data);
-      dispatch({ type: SET_INFO, payload: response.data });
-    }
-  },
+  set: (id, token) => ({
+    type: actions.SET_INFO,
+    service: userInfo.get,
+    payload: { id, token },
+    target: 'user',
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        localServices.set(STORAGE_KEY, response.data);
+      })
+    ]
+  }),
   local: () => async dispatch => {
     const LOCAL_DATA = localServices.get(STORAGE_KEY);
-    dispatch({ type: SET_INFO, payload: LOCAL_DATA });
+    dispatch({ type: actions.SET_INFO_SUCCESS, target: 'user', payload: LOCAL_DATA });
   },
   delete: () => async dispatch => {
     localServices.delete(STORAGE_KEY);
-    dispatch({ type: DELETE_INFO });
+    dispatch({ type: actions.DELETE_INFO, target: 'user' });
   }
 };
 
