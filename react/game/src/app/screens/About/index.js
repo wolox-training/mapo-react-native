@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
 import userTypes from '../../../types/userTypes';
-import DEFAULT_USER from '../../../constants/defaultUser';
 
 import styles from './styles.scss';
 
@@ -39,7 +38,7 @@ About.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.user.user !== null ? state.user.user : DEFAULT_USER
+  user: state.user.user
 });
 
 const enhance = compose(

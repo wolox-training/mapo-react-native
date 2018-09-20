@@ -27,7 +27,7 @@ const actionCreators = {
   },
   delete: () => async dispatch => {
     localServices.delete(STORAGE_KEY);
-    dispatch({ type: actions.DELETE_INFO, target: 'user', payload: null });
+    dispatch({ type: actions.DELETE_INFO, target: 'user' });
   }
 };
 
