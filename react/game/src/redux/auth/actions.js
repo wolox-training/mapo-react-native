@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import { withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
+import { withPostSuccess, withSuccess, completeTypes, createTypes } from 'redux-recompose';
 
 import Services from '../../services/authServices';
 import localServices from '../../services/localService';
@@ -19,6 +19,17 @@ export const actionCreators = {
     payload: values,
     target: 'auth',
     injections: [
+      withSuccess((dispatch, response) => {
+        setTimeout(
+          () =>
+            dispatch({
+              type: actions.CHECK_AUTH_SUCCESS,
+              payload: response.data,
+              target: 'auth'
+            }),
+          2000
+        );
+      }),
       withPostSuccess((dispatch, response) => {
         localServices.set(STORAGE_KEY, { status: true, token: response.data });
         dispatch(userActions.set(response.data.userId, response.data.id));

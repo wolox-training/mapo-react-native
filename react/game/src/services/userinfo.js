@@ -2,7 +2,7 @@ import { USER_INFO_PATH } from '../constants/apiNames';
 import API from '../config/API';
 
 const services = {
-  get: (id, token) => API.get(`${USER_INFO_PATH + id}?access_token=${token}`)
+  get: values => API.get(`${USER_INFO_PATH + values.id}?access_token=${values.token}`)
 };
 
 export default services;
