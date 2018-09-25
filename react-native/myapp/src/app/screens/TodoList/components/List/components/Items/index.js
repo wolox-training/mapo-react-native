@@ -45,8 +45,15 @@ class Items extends Component {
   );
 
   render() {
-    const { list } = this.props;
-    return <FlatList data={list} keyExtractor={this.keyExtractor} renderItem={this.renderItem} />;
+    const { list, style } = this.props;
+    return (
+      <FlatList
+        style={{ height: '60%' }}
+        data={list}
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderItem}
+      />
+    );
   }
 }
 
