@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 import Todos from './layout';
 
-class TodosContainer extends Component {
-  render() {
-    return <Todos />;
-  }
-}
+const TodosContainer = () => <Todos />;
 
-export default connect()(TodosContainer);
+export default TodosContainer;

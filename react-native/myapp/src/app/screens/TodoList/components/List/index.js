@@ -1,38 +1,28 @@
-import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import CustomButton from '../../../../components/CustomButton';
+import todosTypes from '../../../../../types/todosTypes';
 
-import styles from './styles';
+import Items from './components/Items';
+import DeleteSelectedButton from './components/DeleteSelectedButton';
 
-class List extends Component {
-  handleClick = i => {
-    const { onPressItem } = this.props;
-    onPressItem(i);
-  };
+const List = props => {
+  const { list, onPressButton, onChecked, onDeleteChecked } = props;
 
-  renderItem = text => (
-    <View style={styles.item} key={text.key}>
-      <Text style={styles.itemText}>{text.name}</Text>
-      <CustomButton
-        style={styles.deleteButton}
-        textStyle={styles.textWhite}
-        onPress={() => this.handleClick(text.key)}
-        title="x"
-      />
+  return (
+    <View>
+      <Items list={list} onPressButton={onPressButton} onChecked={onChecked} />
+      <DeleteSelectedButton onDeleteChecked={onDeleteChecked} />
     </View>
   );
-
-  render() {
-    const { list } = this.props;
-    return <ScrollView style={styles.list}>{list.map(this.renderItem)}</ScrollView>;
-  }
-}
+};
 
 List.propTypes = {
-  onPressItem: PropTypes.func.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  onPressButton: PropTypes.func.isRequired,
+  onChecked: PropTypes.func.isRequired,
+  onDeleteChecked: PropTypes.func.isRequired,
+  list: PropTypes.arrayOf(todosTypes.todo)
 };
 
 export default List;

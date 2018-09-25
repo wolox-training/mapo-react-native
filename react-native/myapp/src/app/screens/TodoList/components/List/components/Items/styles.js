@@ -1,31 +1,34 @@
 import { StyleSheet } from 'react-native';
 
-import { white, blue } from '../../../../../constants/colors';
+import { white, blue, red, black } from '../../../../../../../constants/colors';
 
 const styles = StyleSheet.create({
-  list: {
-    backfaceVisibility: 'visible'
-  },
   item: {
     backgroundColor: 'whitesmoke',
     marginBottom: 5,
     flexDirection: 'row',
-    flexWrap: 'wrap',
     alignItems: 'center',
     height: 50,
     justifyContent: 'space-between'
   },
   itemText: {
-    margin: 10
+    margin: 0
+  },
+  checkbox: {
+    backgroundColor: 'whitesmoke',
+    borderColor: black,
+    borderWidth: 1
   },
   deleteButton: {
-    backgroundColor: blue,
-    padding: 2,
-    height: 50,
-    width: 50
+    backgroundColor: red,
+    borderRadius: 20,
+    margin: 10,
+    height: 40,
+    width: 40
   },
   textWhite: {
-    color: white
+    color: white,
+    fontWeight: 'bold'
   }
 });
 

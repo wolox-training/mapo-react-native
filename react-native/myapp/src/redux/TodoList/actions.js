@@ -1,8 +1,10 @@
 import { createTypes } from 'redux-recompose';
 
-export const actions = createTypes(['ADD', 'REMOVE'], '@@LIST');
+export const actions = createTypes(['ADD', 'REMOVE', 'CHECKED', 'DELETECHECKED'], '@@LIST');
 
 export const actionCreators = {
-  add: item => ({ type: actions.ADD, payload: item }),
-  remove: key => ({ type: actions.REMOVE, payload: key })
+  add: text => ({ type: actions.ADD, payload: text }),
+  remove: key => ({ type: actions.REMOVE, payload: key }),
+  checked: key => ({ type: actions.CHECKED, payload: key }),
+  deleteChecked: () => ({ type: actions.DELETECHECKED })
 };
