@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -11,10 +11,10 @@ const List = props => {
   const { list, onPressButton, onChecked, onDeleteChecked } = props;
 
   return (
-    <View>
+    <Fragment>
       <Items list={list} onPressButton={onPressButton} onChecked={onChecked} />
       <DeleteSelectedButton onDeleteChecked={onDeleteChecked} />
-    </View>
+    </Fragment>
   );
 };
 

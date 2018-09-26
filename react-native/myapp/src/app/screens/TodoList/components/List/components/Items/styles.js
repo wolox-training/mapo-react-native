@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-import { white, blue, red, black } from '../../../../../../../constants/colors';
+import { white, red, black } from '../../../../../../../constants/colors';
 
 const styles = StyleSheet.create({
+  list: { flex: 10 },
   item: {
     backgroundColor: 'whitesmoke',
     marginBottom: 5,
@@ -10,9 +11,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     justifyContent: 'space-between'
-  },
-  itemText: {
-    margin: 0
   },
   checkbox: {
     backgroundColor: 'whitesmoke',

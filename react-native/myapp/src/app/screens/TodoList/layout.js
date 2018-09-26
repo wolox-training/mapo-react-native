@@ -9,6 +9,7 @@ import todosTypes from '../../../types/todosTypes';
 import List from './components/List';
 import Input from './components/Input';
 import Title from './components/Title';
+import styles from './styles';
 
 class Todos extends Component {
   onAddTodo = text => {
@@ -34,7 +35,7 @@ class Todos extends Component {
   render() {
     const { todos } = this.props;
     return (
-      <View>
+      <View style={styles.container}>
         <Title>To-Do List</Title>
         <Input placeholder="Type a todo here ..." onSubmitEditing={this.onAddTodo} />
         <List
