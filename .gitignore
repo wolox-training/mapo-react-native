@@ -64,5 +64,5 @@ application.css
 .sass-cache/
 application.css.map
 
-react/.DS_Store
+**/.DS_Store
 react/intro/

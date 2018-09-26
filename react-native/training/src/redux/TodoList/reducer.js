@@ -1,3 +1,5 @@
+import { createReducer } from 'redux-recompose';
+
 import { actions } from './actions';
 
 const initialState = {
@@ -20,47 +22,46 @@ const initialState = {
   ]
 };
 
-const reducer = (state = initialState, action) => {
-  const { todos } = state;
-  const { type, payload } = action;
+const reducerDescription = {
+  [actions.ADD]: (state, action) => {
+    const { todos } = state;
+    return {
+      ...state,
+      todos: [{ ...action.payload }, ...todos]
+    };
+  },
+  [actions.REMOVE]: (state, action) => {
+    const { todos } = state;
+    return {
+      ...state,
+      todos: todos.filter(todo => todo.key !== action.payload)
+    };
+  },
 
-  switch (type) {
-    case actions.ADD: {
-      const key = Date.now();
-      return {
-        ...state,
-        todos: [{ name: payload, key, checked: false }, ...todos]
-      };
-    }
-    case actions.REMOVE: {
-      return {
-        ...state,
-        todos: todos.filter(todo => todo.key !== payload)
-      };
-    }
-    case actions.CHECKED: {
-      return {
-        ...state,
-        todos: todos.map(
-          todo =>
-            todo.key === payload
-              ? {
-                  ...todo,
-                  checked: !todo.checked
-                }
-              : todo
-        )
-      };
-    }
-    case actions.DELETECHECKED: {
-      return {
-        ...state,
-        todos: todos.filter(todo => todo.checked === false)
-      };
-    }
-    default:
-      return state;
+  [actions.CHECKED]: (state, action) => {
+    const { todos } = state;
+    return {
+      ...state,
+      todos: todos.map(
+        todo =>
+          todo.key === action.payload
+            ? {
+                ...todo,
+                checked: !todo.checked
+              }
+            : todo
+      )
+    };
+  },
+  [actions.DELETECHECKED]: state => {
+    const { todos } = state;
+    return {
+      ...state,
+      todos: todos.filter(todo => todo.checked === false)
+    };
   }
 };
+
+const reducer = createReducer(initialState, reducerDescription);
 
 export default reducer;
