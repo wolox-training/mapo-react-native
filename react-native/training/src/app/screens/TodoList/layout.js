@@ -13,7 +13,7 @@ const Todos = props => {
   const { todos, onAddTodo, onRemoveTodo, onChecked, onDeleteChecked } = props;
   return (
     <View style={styles.container}>
-      <Title>To-Do List</Title>
+      <Title>Edit your TODO's list here</Title>
       <Input placeholder="Type a todo here ..." onSubmitEditing={onAddTodo} />
       <List
         list={todos}

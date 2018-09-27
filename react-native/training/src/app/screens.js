@@ -13,6 +13,7 @@ import { stackNavConfig, screensNavOptions, tabNavConfig } from '../config/navig
 import Login from './screens/Login';
 import Home from './screens/Home';
 import TodoList from './screens/TodoList';
+import Dummy from './screens/Dummy';
 
 // ------------------ Initial loading screen
 // TODO: URGENT! Move this component to a separated file and use it ONLY if the project has login.
@@ -20,7 +21,7 @@ import TodoList from './screens/TodoList';
 class InitialLoadingScreen extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.initialLoading) {
-      nextProps.navigation.replace(nextProps.currentUser ? Routes.Home : Routes.Login);
+      nextProps.navigation.replace(nextProps.currentUser ? Routes.Todos : Routes.Login);
     }
   }
 
@@ -63,17 +64,29 @@ export default createStackNavigator(
             navigationOptions: screensNavOptions[Routes.Tab1]
           },
           [Routes.Tab2]: {
-            screen: TodoList,
-            navigationOptions: screensNavOptions[Routes.Tab2]
-          },
-          [Routes.Tab3]: {
             screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab3]
+            navigationOptions: screensNavOptions[Routes.Tab2]
           }
         },
         tabNavConfig
       ),
       navigationOptions: screensNavOptions[Routes.Home]
+    },
+    [Routes.Todos]: {
+      screen: createBottomTabNavigator(
+        {
+          [Routes.Todos]: {
+            screen: TodoList,
+            navigationOptions: screensNavOptions[Routes.Todos]
+          },
+          [Routes.Dummy]: {
+            screen: Dummy,
+            navigationOptions: screensNavOptions[Routes.Dummy]
+          }
+        },
+        tabNavConfig
+      ),
+      navigationOptions: screensNavOptions[Routes.Todos]
     }
   },
   stackNavConfig
