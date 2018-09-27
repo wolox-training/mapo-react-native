@@ -1,7 +1,9 @@
 import React from 'react';
 
-import Dummy from './layout';
+import books from '../../../constants/books';
 
-const DummyContainer = () => <Dummy />;
+import Books from './layout';
 
-export default DummyContainer;
+const TodosContainer = () => <Books list={books} />;
+
+export default TodosContainer;

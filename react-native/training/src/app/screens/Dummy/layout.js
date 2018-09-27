@@ -1,13 +1,22 @@
 import React from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
+import booksTypes from '../../../types/booksTypes';
+
+import List from './components/List';
 import Title from './components/Title';
 import styles from './styles';
 
-const Dummy = () => (
+const Books = ({ list }) => (
   <View style={styles.container}>
-    <Title>Dummy view</Title>
+    <Title>Books list</Title>
+    <List list={list} />
   </View>
 );
 
-export default Dummy;
+Books.propTypes = {
+  list: PropTypes.arrayOf(booksTypes.book)
+};
+
+export default Books;
