@@ -37,7 +37,6 @@ const reducerDescription = {
       todos: todos.filter(todo => todo.key !== action.payload)
     };
   },
-
   [actions.CHECKED]: (state, action) => {
     const { todos } = state;
     return {
