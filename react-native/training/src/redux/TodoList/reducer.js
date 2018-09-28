@@ -1,4 +1,4 @@
-import { createReducer } from 'redux-recompose';
+import { createReducer, onDelete } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -30,13 +30,7 @@ const reducerDescription = {
       todos: [{ ...action.payload }, ...todos]
     };
   },
-  [actions.REMOVE]: (state, action) => {
-    const { todos } = state;
-    return {
-      ...state,
-      todos: todos.filter(todo => todo.key !== action.payload)
-    };
-  },
+  [actions.REMOVE]: onDelete(i => i.key),
   [actions.CHECKED]: (state, action) => {
     const { todos } = state;
     return {

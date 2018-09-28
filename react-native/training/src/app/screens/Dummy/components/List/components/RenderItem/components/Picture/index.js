@@ -1,29 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-class Picture extends Component {
-  getImage = url =>
-    url !== null ? (
+const Picture = ({ imgUrl }) => (
+  <View style={styles.imageContainer}>
+    {imgUrl !== null ? (
       <Image
         source={{
-          uri: url
+          uri: imgUrl
         }}
         style={styles.image}
         resizeMode="cover"
       />
     ) : (
       <Icon name="cross" type="entypo" color="#fff" />
-    );
-
-  render() {
-    const { imgUrl } = this.props;
-    return <View style={styles.imageContainer}>{this.getImage(imgUrl)}</View>;
-  }
-}
+    )}
+  </View>
+);
 
 Picture.propTypes = {
   imgUrl: PropTypes.string
