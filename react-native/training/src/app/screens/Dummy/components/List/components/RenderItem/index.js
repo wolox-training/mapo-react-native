@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 
 import booksTypes from '../../../../../../../types/booksTypes';
 import Picture from '../../../../../../components/Picture';
+import * as Routes from '../../../../../../../constants/routes';
 import styles from '../../styles';
 
 class RenderItem extends Component {
   handleOnPress = () => {
     const { item, navigation } = this.props;
-    navigation.navigate('BookDetails', { item });
+    navigation.navigate(Routes.BookDetails, { item });
   };
 
   render() {
