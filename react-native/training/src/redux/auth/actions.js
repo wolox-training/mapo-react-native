@@ -21,7 +21,7 @@ export const actionCreators = {
         dispatch(
           StackActions.reset({
             index: 0,
-            actions: [NavigationActions.navigate({ routeName: Routes.Home })]
+            actions: [NavigationActions.navigate({ routeName: Routes.Todos })]
           })
         );
       })
