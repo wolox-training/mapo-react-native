@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import booksTypes from '../../../../../../../types/booksTypes';
+import Picture from '../../../../../../components/Picture';
 import styles from '../../styles';
 
-import Picture from './components/Picture';
+class RenderItem extends Component {
+  handleOnPress = () => {
+    const { item, navigation } = this.props;
+    navigation.navigate('BookDetails', { item });
+  };
 
-const RenderItem = ({ item, navigation }) => (
-  <TouchableOpacity
-    style={styles.item}
-    key={item.id}
-    onPress={() => {
-      navigation.navigate('BookDetails', {
-        item
-      });
-    }}
-  >
-    <Picture imgUrl={item.image_url} />
-    <View>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.author}>{item.author}</Text>
-    </View>
-  </TouchableOpacity>
-);
+  render() {
+    const { item } = this.props;
+    return (
+      <TouchableOpacity style={styles.item} key={item.id} onPress={this.handleOnPress}>
+        <Picture imgUrl={item.image_url} size={50} />
+        <View>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.author}>{item.author}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
 
 RenderItem.propTypes = {
   item: booksTypes.book,
