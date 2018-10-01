@@ -5,14 +5,30 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const Picture = ({ imgUrl }) => (
-  <View style={styles.imageContainer}>
+const Picture = ({ imgUrl, size }) => (
+  <View
+    style={[
+      styles.imageContainer,
+      {
+        borderRadius: size / 2,
+        height: size,
+        width: size
+      }
+    ]}
+  >
     {imgUrl !== null ? (
       <Image
         source={{
           uri: imgUrl
         }}
-        style={styles.image}
+        style={[
+          styles.image,
+          {
+            height: size,
+            width: size,
+            borderRadius: size / 2
+          }
+        ]}
         resizeMode="cover"
       />
     ) : (
@@ -22,7 +38,8 @@ const Picture = ({ imgUrl }) => (
 );
 
 Picture.propTypes = {
-  imgUrl: PropTypes.string
+  imgUrl: PropTypes.string,
+  size: PropTypes.number.isRequired
 };
 
 export default Picture;

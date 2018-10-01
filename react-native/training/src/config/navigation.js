@@ -3,10 +3,15 @@ import { blue, white } from '../constants/colors';
 
 import I18n from './i18n';
 
+const titleSet = navigation => {
+  if (typeof navigation.state.params === 'object') return navigation.state.params.item.title;
+  return I18n.t(`app:${navigation.state.routeName}`);
+};
+
 // Default nav options for all screens
 const defaultNavOptions = ({ navigation }) => ({
   // Change screen title from i18n traslates files
-  title: I18n.t(`app:${navigation.state.routeName}`),
+  title: titleSet(navigation),
 
   // TODO: The following options are examples. Change them to your need
   headerStyle: {
@@ -29,14 +34,6 @@ const defaultNavOptions = ({ navigation }) => ({
 export const screensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
-  /*
-  [Routes.Home]: {
-    title: 'Home'
-  },
-  [Routes.Login]: {
-    header: null
-  }
-  */
   [Routes.InitialLoading]: {
     header: null,
     headerStyle: {

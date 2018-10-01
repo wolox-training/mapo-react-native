@@ -11,7 +11,8 @@ const translations = {
     [Routes.Tab2]: 'Tab 2',
     [Routes.Home]: 'Home',
     [Routes.Todos]: "ToDo's",
-    [Routes.Dummy]: 'Dummy'
+    [Routes.Dummy]: 'Dummy',
+    [Routes.BookDetails]: 'BookDetails'
   }
 };
 
